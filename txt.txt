@@ -1,0 +1,20 @@
+def main():
+    global i
+    print("\nObtaining UAA Token")
+    setStartTime_STR(time.time()) # New token start time for Stratos.
+    obtainNewUAAToken() #8 hour exp. time
+    assetTimer = time.time()
+    
+    while True:        
+        print("\n\n************** Loop " + str(i) + " **************\n")
+        stratosPost()
+        runningTime = time.time() - startTime
+        now = datetime.now()
+        txtfile= "/home/pi/StratosPi/SCD30_Modbus/successful_post.txt"
+        print('Successfully Posted')
+        with open(txtfile, 'w') as the_file:
+            the_file.write((str(now)))
+        time.sleep(30) #30 second delay
+        i += 1
+
+main()
